@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>RFID</title>
+</head>
+<body>
+    <button class="rfid" id="rfid_1" rfid="123456" >RFID</button>
+<button class="rfid" id="rfid_2" rfid="678901" >RFID</button>
+<button class="rfid" id="rfid_3" rfid="456789" >RFID</button>
+<script>
+    $(".rfid").click(saveToDB);
+
+function saveToDB(e){
+  let rfid = $(this).attr('rfid');
+  console.log(rfid)
+}
+</script>
+</body>
+</html>
