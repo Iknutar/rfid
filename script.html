@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id ="minTabell">
+        
+    <script>
+  
+//let jsondata = '{"data":[{"id":1,"rfid":"123","datum":null},{"id":2,"rfid":"123","datum":null},{"id":3,"rfid":"123","datum":null},{"id":4,"rfid":"123","datum":null},{"id":5,"rfid":"123","datum":null},{"id":6,"rfid":"343","datum":20022012}]}';
+var request = new XMLHttpRequest();
+
+//let data = JSON.parse(jsondata)
+
+
+
+$.getJSON("http://localhost:3000/getrfid", function(result){
+   // $.each(result, function(i, field){
+     // $("#minTabell").append(field.id + " " + field.title);
+    //});
+   console.log(result)
+  });
+
+data = data.data;
+console.log(result)
+//console.log(data)
+
+let html = "</table>"
+for(let i = 0; i < data.length; i++){
+    html += `<tr><td>${data[i].id}</td>
+      <td>${data[i].rfid}</td>
+      <td>${data[i].datum}</td></tr>`;
+
+}
+html += "</table>" 
+ $("#minTabell").html(html,data);
+//console.log(data.data[0])
+console.log(html);
+
+console.log(jsondata);
+
+</script> 
+</div>
+</div>
+</body>
+</html>

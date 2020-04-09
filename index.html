@@ -3,22 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>RFID</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <title>Index</title>
 </head>
 <body>
-    <button class="rfid" id="rfid_1" rfid="123456" >RFID</button>
-<button class="rfid" id="rfid_2" rfid="678901" >RFID</button>
-<button class="rfid" id="rfid_3" rfid="456789" >RFID</button>
-<script>
-    $(".rfid").click(saveToDB);
+  <div id="root"></div>
+        <div class="running">
+            <div class="header">
+                <nav class="navbar" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                    </div>
+                    <div class="navbar-menu">
+                   
+                    </div>
+                  </nav>
+              
+            </div>
+            <button id="knapp" class="knappar" rfid="123">Run</button>
+      <div id="minTabell"></div>
+    <script>
+          let knapp = document.getElementById("knapp");
+        knapp.addEventListener("click", knapptryk);
 
-function saveToDB(e){
-  let rfid = $(this).attr('rfid');
-  console.log(rfid)
+    function knapptryk(){
+   console.log("Knappen fungerar!" +" "+ $("#knapp").attr("rfid")); 
+    }
+
+
+   let database = '{"data":[{"id":36,"rfid":"657348","datum":250338227892020},{"id":38,"rfid":"657348","datum":"2020 03 25 6 35 290"},{"id":78,"rfid":"Rfiddata","datum":"2020 06 04 10 49 766"},{"id":79,"rfid":"Rfiddata","datum":"2020 06 04 17 20 592"},{"id":71,"rfid":"data","datum":"2020 06 04 59 39 199"},{"id":72,"rfid":"data","datum":"2020 06 04 7 10 33"},{"id":73,"rfid":"data","datum":"2020 06 04 7 10 33"},{"id":74,"rfid":"data","datum":"2020 06 04 7 10 33"},{"id":75,"rfid":"data","datum":"2020 06 04 7 10 33"},{"id":76,"rfid":"data","datum":"2020 06 04 7 10 33"},{"id":77,"rfid":"data","datum":"2020 06 04 7 10 33"},{"id":40,"rfid":"data","datum":"2020 25 03 52 23 477"},{"id":39,"rfid":"612","datum":"2020 25 03 7 38 658"},{"id":43,"rfid":"123","datum":"2020 26 03 10 42 185"},{"id":44,"rfid":"123","datum":"2020 26 03 15 19 201"},{"id":45,"rfid":"123","datum":"2020 26 03 16 42 450"},{"id":46,"rfid":"123","datum":"2020 26 03 36 27 868"},{"id":41,"rfid":"123","datum":"2020 26 03 50 13 676"},{"id":42,"rfid":"123","datum":"2020 26 03 54 24 11"},{"id":61,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":62,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":63,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":64,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":65,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":66,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":67,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":68,"rfid":"456","datum":"2020 27 03 0 39 389"},{"id":54,"rfid":"456","datum":"2020 27 03 11 13 819"},{"id":55,"rfid":"456","datum":"2020 27 03 14 45 135"},{"id":47,"rfid":"123","datum":"2020 27 03 30 30 789"},{"id":69,"rfid":"456","datum":"2020 27 03 30 57 291"},{"id":56,"rfid":"456","datum":"2020 27 03 36 3 272"},{"id":48,"rfid":"123","datum":"2020 27 03 38 53 693"},{"id":49,"rfid":"123","datum":"2020 27 03 38 53 693"},{"id":50,"rfid":"123","datum":"2020 27 03 41 57 933"},{"id":51,"rfid":"123","datum":"2020 27 03 49 17 295"},{"id":57,"rfid":"456","datum":"2020 27 03 56 18 661"},{"id":58,"rfid":"456","datum":"2020 27 03 56 52 873"},{"id":59,"rfid":"456","datum":"2020 27 03 56 52 873"},{"id":60,"rfid":"123","datum":"2020 27 03 56 52 873"},{"id":52,"rfid":"456","datum":"2020 27 03 7 55 570"},{"id":53,"rfid":"456","datum":"2020 27 03 9 0 643"},{"id":70,"rfid":"123","datum":"2020 31 03 38 24 390"},{"id":30,"rfid":"8765","datum":"2020-3-25"},{"id":31,"rfid":"657348","datum":"2020-3-25"},{"id":37,"rfid":"657348","datum":"25 03 39 12 932 2020"},{"id":32,"rfid":"657348","datum":"25-03-2020"},{"id":33,"rfid":"657348","datum":"25-03-2020"},{"id":34,"rfid":"657348","datum":"25-03-2020"},{"id":35,"rfid":"657348","datum":"25-03-31.27.970.2020"}]}';
+   let data = JSON.parse(database);
+
+    $.getJSON("/getrfid", function(result){
+        console.log(typeof(result.data.length));
+        
+        for(var i = 0; i < result.data.length; i++){
+
+        }
+    });
+    
+data = data.data;
+console.log(data)
+let html = "<table>"
+for(i = 0; i < data.length; i++){
+  // nu är det live
+  html += `<tr><td>${data[i].id}</td>
+  <td>${data[i].rfid}</td>
+  <td>${data[i].datum}</td></tr>
+  `;
+  
 }
-</script>
+$("#minTabell").html(html, data);
+html += "</table>"
+
+
+    </script>
 </body>
 </html>
