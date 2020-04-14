@@ -1,0 +1,13 @@
+                                             Lia Dokumentaion
+
+          Vår uppgift var att få sparat data i vår egna databas och sedan få det utprintat som en tabell i html.
+
+          Jag började med att göra en egen databas med 3 fields. En som heter id som innehåller id, en som heter RFID som 
+          innehåller namnet och det tredje som heter datum och innehåller datumet.
+
+          Sen gjorde jag en server.js fil där vi skapade routes till servern. Gjorde en app.get som skickar data till databasen.
+
+         
+
+          Datan kunde man se printas ut i browser med localhost:3000/tag/312.
+          Och för att få datan från databasen till browsern användes getJSON
